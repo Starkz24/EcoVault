@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import "../../CSS/cards.css";
+import { useToast } from "../Toast/ToastContext";
 
-const Scanner = () => {
+const Scanner = ({ onScanComplete }) => {
+  const showToast = useToast();
   const [previewUrl, setPreviewUrl] = useState(null);
   const [lastResult, setLastResult] = useState(null);
   const [error, setError] = useState('');
@@ -47,11 +49,9 @@ const Scanner = () => {
 
       if (index !== -1) {
         const itemPoints = elementPoints[index];
-
-        setLastResult({ name: detected, points: itemPoints });
-
         const token = localStorage.getItem("token");
-        await fetch("/api/points", {
+
+        const pointsRes = await fetch("/api/points", {
           method: "POST",
           headers: {
             "x-access-token": token,
@@ -60,17 +60,26 @@ const Scanner = () => {
           body: JSON.stringify({ points: itemPoints })
         });
 
-        try {
-          await fetch("/api/scan-history", {
-            method: "POST",
-            headers: {
-              "x-access-token": token,
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ itemName: detected, points: itemPoints })
-          });
-        } catch (historyErr) {
-          console.error('Failed to save scan history:', historyErr);
+        if (!pointsRes.ok) {
+          const errData = await pointsRes.json().catch(() => ({}));
+          setError(errData.error || "Failed to save points — try again");
+          showToast(errData.error || "Failed to save points", "error");
+        } else {
+          setLastResult({ name: detected, points: itemPoints });
+          onScanComplete?.();
+
+          try {
+            await fetch("/api/scan-history", {
+              method: "POST",
+              headers: {
+                "x-access-token": token,
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ itemName: detected, points: itemPoints })
+            });
+          } catch (historyErr) {
+            console.error('Failed to save scan history:', historyErr);
+          }
         }
       } else {
         setError("Unknown item detected");
