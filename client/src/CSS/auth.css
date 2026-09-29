@@ -1,0 +1,84 @@
+.auth-shell {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.auth-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.auth-orb--one {
+  width: 420px;
+  height: 420px;
+  top: -120px;
+  left: -100px;
+  background: radial-gradient(circle, #af40ff, transparent 70%);
+}
+
+.auth-orb--two {
+  width: 480px;
+  height: 480px;
+  bottom: -160px;
+  right: -140px;
+  background: radial-gradient(circle, #00ddeb, transparent 70%);
+}
+
+.auth-card-border {
+  position: relative;
+  z-index: 1;
+  border-radius: 24px;
+  padding: 2px;
+  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  box-shadow: rgba(151, 65, 252, 0.35) 0 20px 50px -10px;
+  animation: auth-card-in 0.5s ease-out;
+}
+
+.auth-card-inner {
+  background: rgb(10, 8, 35);
+  border-radius: 22px;
+  padding: 2.5rem 2rem;
+}
+
+@keyframes auth-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.auth-input .MuiOutlinedInput-root {
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.auth-submit-btn {
+  background-image: linear-gradient(90deg, #af40ff, #5b42f3 60%, #00ddeb) !important;
+  border-radius: 12px !important;
+  padding: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: none !important;
+  font-size: 1rem !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+  box-shadow: rgba(151, 65, 252, 0.4) 0 8px 20px -6px !important;
+}
+
+.auth-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: rgba(151, 65, 252, 0.55) 0 12px 24px -6px !important;
+}
+
+.auth-icon {
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+}
