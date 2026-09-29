@@ -9,9 +9,9 @@ const Scanner = ({ onScanComplete }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const elements = ["Glass", "Metal", "Paper", "Plastic", "Battery", "Biological", "Trash"];
+  const elements = ["Cardboard", "Glass", "Metal", "Paper", "Plastic", "Trash"];
 
-  const elementPoints = [20, 25, 10, 15, 40, 8, 5];
+  const elementPoints = [12, 20, 25, 10, 15, 5];
 
   const modelApiUrl = process.env.REACT_APP_MODEL_API_URL || "http://localhost:4000";
 

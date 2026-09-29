@@ -13,12 +13,11 @@ const ECO_TIERS = [
 const getEcoTier = (points) => ECO_TIERS.find((tier) => points >= tier.min) || ECO_TIERS[ECO_TIERS.length - 1];
 
 const ITEM_ICONS = {
+  Cardboard: "📦",
   Glass: "🍾",
   Metal: "🔩",
   Paper: "📄",
   Plastic: "🧴",
-  Battery: "🔋",
-  Biological: "🍂",
   Trash: "🗑️",
 };
 

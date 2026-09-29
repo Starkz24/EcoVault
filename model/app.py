@@ -3,9 +3,10 @@ from flask_cors import CORS
 from PIL import Image
 import numpy as np
 import tf_keras
+from tf_keras.applications.mobilenet_v2 import preprocess_input
 import json
 
-class_names = ["Glass", "Metal", "Paper", "Plastic", "Battery", "Biological", "Trash"]
+class_names = ["Cardboard", "Glass", "Metal", "Paper", "Plastic", "Trash"]
 
 app = Flask(__name__)
 CORS(app)
@@ -30,7 +31,7 @@ def detect():
 def detect_objects_on_image(image):
     input_shape = model.input_shape[1:3]
     resized_image = image.convert("RGB").resize(input_shape)
-    input_data = np.expand_dims(np.array(resized_image) / 255.0, axis=0)
+    input_data = np.expand_dims(preprocess_input(np.array(resized_image, dtype=np.float32)), axis=0)
 
     predictions = model.predict(input_data)
 

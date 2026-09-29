@@ -1,7 +1,6 @@
-0 Glass
-1 Metal
-2 Paper
-3 Plastic
-4 Battery
-5 Biological
-6 Trash
+0 Cardboard
+1 Glass
+2 Metal
+3 Paper
+4 Plastic
+5 Trash
