@@ -1,6 +1,6 @@
 # EcoVault
 
-A gamified waste-management app. Scan waste items to identify their category and earn points, climb a leaderboard, join community cleanup events, and donate toward environmental initiatives.
+A gamified waste-management app — scan waste items to identify their category and earn points, climb a leaderboard, join community cleanup events, and donate toward environmental initiatives.
 
 ## Stack
 
